@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS `contatos` (`id` int(11) NOT NULL AUTO_INCREMENT, `nome` varchar(100) NOT NULL,`email` varchar(255) NOT NULL,`telefone` varchar(20) NOT NULL,`estado_id` int(11) NOT NULL,`cidade_id` int(11) NOT NULL,`mensagem` text NOT NULL,`created` datetime NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
