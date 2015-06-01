@@ -20,28 +20,20 @@ class ContatosController extends ContactPageAppController {
 
 		if($this->request->is('post') && !empty($this->request->data)) {
 
-			if (PluginConfig::$config['salvar']) {
-				if (!$this->Contato->save($this->request->data)) {
-					$this->set('errors',$this->Contato->validationErrors);
-					return;
-				}
+			$this->Contato->set($this->request->data);
+			if (!$this->Contato->validates()) {
+				$this->set('errors',$this->Contato->validationErrors);
+				return;
+			}
 
+			if (PluginConfig::$config['salvar']) {
+				$this->Contato->save(null, false);
 			}
 
 			if (PluginConfig::$config['enviarEmail']) {
-				$this->Contato->set($this->request->data); 
-				if ($this->Contato->validates()) {
-					$dados['assunto'] = PluginConfig::$config['assunto'];
-					$dados['dados'] = $this->_getDadosComNomeDeCidadeEstado($this->request->data);
-
-					if (!$this->Mensageiro->enviar(PluginConfig::$config['assunto'], PluginConfig::$config['destino'], $dados, PluginConfig::$config['template'])) {
-
-					}
-
-				} else {
-					$this->set('errors',$this->Contato->validationErrors);
-					return;
-				}
+				$dados['assunto'] = PluginConfig::$config['assunto'];
+				$dados['dados'] = $this->_getDadosComNomeDeCidadeEstado($this->request->data['Contato']);
+				$this->Mensageiro->enviar(PluginConfig::$config['assunto'], PluginConfig::$config['destino'], $dados, PluginConfig::$config['template']);	
 			}
 		}
 	}

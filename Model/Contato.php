@@ -96,7 +96,7 @@ class Contato extends ContactPageAppModel {
 
     public function save($data = null , $validate = true , $fieldList = array()) {
         try {
-            parent::save($data, $validate, $fieldList);
+            return parent::save($data, $validate, $fieldList);
         } catch (MissingTableException $e) {
             $this->_setup($this->useTable);
             die("Tabela `{$this->useTable}` criado com sucesso.");
