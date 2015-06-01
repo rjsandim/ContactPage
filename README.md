@@ -17,8 +17,9 @@ First of all, you have to clone or download de zip file into directory: app>Plug
 
 As every CakePlugin to install you need to add the code line below on bootstrap file (app>Config>bootstrap.php):
 
-    CakePlugin::load(array('ContactPage'));
-
+```php
+CakePlugin::load(array('ContactPage'));
+```
 ContactPage is already working!
 
 ## How to Test ContactPage ##
@@ -32,7 +33,8 @@ To test the plugin you have to open you browser and type the follow URL:
 
 The configurations are made on file *PluginConfig.php* (app > Plugin > ContactPage > Config > PluginConfig.php) and you can change them.
 
-    class PluginConfig {
+```php
+class PluginConfig {
 
 	public static $config = array(
 		'Contato' => array(
@@ -46,15 +48,17 @@ The configurations are made on file *PluginConfig.php* (app > Plugin > ContactPa
 		'destino' => "rjsandim@gmail.com, andremedalhaa@gmail.com",
 		'template' => "padrao",
 		'emailLog' => true,
-		);
-	}
-
+	);
+}
+```
 
 ## How to Create a Custom Route to ContactPage ##
 
 You could create routes to your plugin ContactPage through file routes.php (app > Config > routes.php).
 
-    Router::connect('/contato', array('plugin' => 'contact_page', 'controller' => 'contatos', 'action' => 'index'));
+```php
+Router::connect('/contato', array('plugin' => 'contact_page', 'controller' => 'contatos', 'action' => 'index'));
+```
 
 
 ----------
